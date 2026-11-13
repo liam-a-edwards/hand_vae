@@ -1,7 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 
-from utils import load_data
+from utils.dataset import load_data
 from utils.layers import VAE
 from utils.losses import vae_loss
 from utils.optim import Adam
@@ -11,7 +11,7 @@ from utils.tensor import Tensor
 
 def main():
     X_train, _y_train, _X_test, _y_test = load_data()
-    X = X_train.numpy()
+    X = X_train
     config = {"input_size": 784, "hidden_size": 64, "latent_size": 16}
     model = VAE(**config)
     optimizer = Adam(model.parameters())

@@ -26,8 +26,8 @@ class Adam(Optimizer):
         self.lr = lr
         self.beta1 = beta1
         self.beta2 = beta2
-        self.m = np.zeros_like(self.parameters)
-        self.v = np.zeros_like(self.parameters)
+        self.m = [np.zeros_like(p.data) for p in self.parameters]
+        self.v = [np.zeros_like(p.data) for p in self.parameters]
         self.t = 0
 
     def step(self):
