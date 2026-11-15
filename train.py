@@ -12,14 +12,14 @@ from utils.tensor import Tensor
 def main():
     X_train, _y_train, _X_test, _y_test = load_data()
     X = X_train
-    config = {"input_size": 784, "hidden_size": 64, "latent_size": 16}
+    config = {"input_size": 784, "hidden_size": 128, "latent_size": 64}
     model = VAE(**config)
     optimizer = Adam(model.parameters())
 
-    epochs = 10
+    epochs = 8
     for epoch in range(epochs):
         total_loss = 0
-        batch_size = 128
+        batch_size = 64
         perm = np.random.permutation(len(X))
         pbar = tqdm(range(0, len(X), batch_size), desc=f"Epoch {epoch + 1}/{epochs}")
         for start in pbar:
@@ -27,7 +27,7 @@ def main():
             x = Tensor(X[idx])
             optimizer.zero_grad()
             x_hat, mean, logvar = model(x)
-            loss = vae_loss(x, x_hat, mean, logvar)
+            loss = vae_loss(x, x_hat, mean, logvar, beta=3)
             loss.backward()
             optimizer.step()
             total_loss += loss.data

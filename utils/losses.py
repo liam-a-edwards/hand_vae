@@ -8,5 +8,5 @@ def kl_divergence(mean, logvar):
     return loss
 
 
-def vae_loss(x, x_hat, mean, logvar):
-    return bce(x, x_hat) + kl_divergence(mean, logvar)
+def vae_loss(x, x_hat, mean, logvar, beta=1.0):
+    return bce(x, x_hat) + beta * kl_divergence(mean, logvar)
