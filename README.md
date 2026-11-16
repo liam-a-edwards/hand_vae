@@ -2,7 +2,11 @@
 
 This repository implements a minimal MLP VAE without any ML frameworks for the model or training. Instead, a Tensor class is defined which uses NumPy arrays and a hand-implemented library of operations for backpropagation, the implementation of which is broadly based on [micrograd](https://github.com/karpathy/micrograd).
 
-The model is trained on the EMNIST dataset, and results can be replicated by running [demo.ipynb](demo.ipynb). 
+The model is trained on the EMNIST dataset, and results can be replicated by running [demo.ipynb](demo.ipynb) or [train.py](train.py). First, install the required packages:
+
+```bash
+pip install numpy torchvision matplotlib tqdm scikit-learn
+```
 
 ## Results
 Below are some samples showing the trained model's outputs. The hyperparameters used are included below. 
